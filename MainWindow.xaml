@@ -1,0 +1,56 @@
+﻿<Window x:Class="AssmblerRGB.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AssmblerRGB"
+        mc:Ignorable="d"
+        Title="Image Correction" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Name="ImageOne" Stretch="Fill"></Image>
+            <Image Grid.Column="1" Name="ImageTwo" Stretch="Fill"></Image>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="10" VerticalAlignment="Center">
+                <DockPanel VerticalAlignment="Center" Margin="10">
+                    <Label DockPanel.Dock="Left" FontWeight="Bold">R:</Label>
+                    <TextBox Text="{Binding ElementName=slColorR, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                    <Slider Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="slColorR" ValueChanged="ColorSlider_ValueChanged" />
+                </DockPanel>
+
+                <DockPanel VerticalAlignment="Center" Margin="10">
+                    <Label DockPanel.Dock="Left" FontWeight="Bold">G:</Label>
+                    <TextBox Text="{Binding ElementName=slColorG, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                    <Slider Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="slColorG" ValueChanged="ColorSlider_ValueChanged" />
+                </DockPanel>
+
+                <DockPanel VerticalAlignment="Center" Margin="10">
+                    <Label DockPanel.Dock="Left" FontWeight="Bold">B:</Label>
+                    <TextBox Text="{Binding ElementName=slColorB, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
+                    <Slider Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="slColorB" ValueChanged="ColorSlider_ValueChanged" />
+                </DockPanel>
+            </StackPanel>
+            <Button x:Name="Button2" Height="100" Width="200" Background="#FFFF4A4A" Margin="175,117,25,17" Click="Start_Click" Grid.Column="1" Content="Start" FontSize="24"/>
+            <Button x:Name="Button1" Height="100" Width="200" Margin="175,13,25,121" Click="Load_Click" Grid.Column="1" Content="Load Image" Background="#FFD46A38" FontSize="24"/>
+            <RadioButton Grid.Column="1" Content="C_#" HorizontalAlignment="Left" Margin="92,45,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
+            <RadioButton Grid.Column="1" Content="ASM" HorizontalAlignment="Left" Margin="92,65,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1"/>
+            <TextBox Grid.Column="1" Text="{Binding ElementName=slValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="98,190,270,17" TextAlignment="Right" />
+            <Slider Maximum="64" Grid.Column="1" TickPlacement="BottomRight" TickFrequency="2" IsSnapToTickEnabled="True" Name="slValue" HorizontalAlignment="Left" Margin="16,155,0,0" VerticalAlignment="Top" Width="120"/>
+            <Label Grid.Column="1" Content="Threads:" HorizontalAlignment="Left" Margin="22,190,0,0" VerticalAlignment="Top"/>
+            <Label  Name="timeLabel" Content="Time&#xA;" HorizontalAlignment="Left" Margin="48,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="-0.578,0.053" Grid.Column="1" Height="33" Width="78"/>
+        </Grid>
+    </Grid>
+</Window>
