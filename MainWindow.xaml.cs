@@ -2,6 +2,7 @@
 using ProjektASM;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -28,6 +29,7 @@ namespace AssmblerRGB
     {
         private Color colorRGB=new Color();
         private Bitmap bitmap=new Bitmap(800,600);
+        private int numberOfThreads = 1;
         public MainWindow()
         {
             InitializeComponent();
@@ -42,6 +44,16 @@ namespace AssmblerRGB
             }
             catch(Exception ) { }
                 
+        }
+        private async void ThreadSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+
+            try
+            {
+                numberOfThreads = (int)slValue.Value;     
+            }
+            catch (Exception) { }
+
         }
         private void Load_Click(object sender, RoutedEventArgs e)
         {
@@ -73,14 +85,16 @@ namespace AssmblerRGB
         private void Start_Click(object sender, RoutedEventArgs e)
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
-            ImageTwo.Source = Convert(bitmap.ColorBalance(colorRGB.B, colorRGB.G, colorRGB.R));
+            ImageTwo.Source = Convert(bitmap.ColorBalance(colorRGB.B, colorRGB.G, colorRGB.R, numberOfThreads));
             watch.Stop();
             timeLabel.Content = "Time: " + watch.Elapsed.Milliseconds.ToString() + " ms";
+            MessageBox.Show(numberOfThreads.ToString());
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-
+            //i would need this
+            //Parallel.For(0, sourceBitmap.Height, new ParallelOptions { MaxDegreeOfParallelism = numberOfThreads }, y => { };
         }
 
         private void CheckBox_Checked_1(object sender, RoutedEventArgs e)

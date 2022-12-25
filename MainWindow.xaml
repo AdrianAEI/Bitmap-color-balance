@@ -28,19 +28,19 @@
                 <DockPanel VerticalAlignment="Center" Margin="10">
                     <Label DockPanel.Dock="Left" FontWeight="Bold">R:</Label>
                     <TextBox Text="{Binding ElementName=slColorR, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                    <Slider Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="slColorR" ValueChanged="ColorSlider_ValueChanged" />
+                    <Slider Maximum="255" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="slColorR" ValueChanged="ColorSlider_ValueChanged" />
                 </DockPanel>
 
                 <DockPanel VerticalAlignment="Center" Margin="10">
                     <Label DockPanel.Dock="Left" FontWeight="Bold">G:</Label>
                     <TextBox Text="{Binding ElementName=slColorG, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                    <Slider Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="slColorG" ValueChanged="ColorSlider_ValueChanged" />
+                    <Slider Maximum="255" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="slColorG" ValueChanged="ColorSlider_ValueChanged" />
                 </DockPanel>
 
                 <DockPanel VerticalAlignment="Center" Margin="10">
                     <Label DockPanel.Dock="Left" FontWeight="Bold">B:</Label>
                     <TextBox Text="{Binding ElementName=slColorB, Path=Value, UpdateSourceTrigger=PropertyChanged}" DockPanel.Dock="Right" TextAlignment="Right" Width="40" />
-                    <Slider Maximum="255" TickPlacement="BottomRight" TickFrequency="5" IsSnapToTickEnabled="True" Name="slColorB" ValueChanged="ColorSlider_ValueChanged" />
+                    <Slider Maximum="255" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="slColorB" ValueChanged="ColorSlider_ValueChanged" />
                 </DockPanel>
             </StackPanel>
             <Button x:Name="Button2" Height="100" Width="200" Background="#FFFF4A4A" Margin="175,117,25,17" Click="Start_Click" Grid.Column="1" Content="Start" FontSize="24"/>
@@ -48,7 +48,7 @@
             <RadioButton Grid.Column="1" Content="C_#" HorizontalAlignment="Left" Margin="92,45,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
             <RadioButton Grid.Column="1" Content="ASM" HorizontalAlignment="Left" Margin="92,65,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1"/>
             <TextBox Grid.Column="1" Text="{Binding ElementName=slValue, Path=Value, UpdateSourceTrigger=PropertyChanged}" Margin="98,190,270,17" TextAlignment="Right" />
-            <Slider Maximum="64" Grid.Column="1" TickPlacement="BottomRight" TickFrequency="2" IsSnapToTickEnabled="True" Name="slValue" HorizontalAlignment="Left" Margin="16,155,0,0" VerticalAlignment="Top" Width="120"/>
+            <Slider Minimum="1" Maximum="64" Grid.Column="1" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="slValue" ValueChanged="ThreadSlider_ValueChanged" HorizontalAlignment="Left" Margin="16,155,0,0" VerticalAlignment="Top" Width="120"/>
             <Label Grid.Column="1" Content="Threads:" HorizontalAlignment="Left" Margin="22,190,0,0" VerticalAlignment="Top"/>
             <Label  Name="timeLabel" Content="Time&#xA;" HorizontalAlignment="Left" Margin="48,0,0,0" VerticalAlignment="Center" RenderTransformOrigin="-0.578,0.053" Grid.Column="1" Height="33" Width="78"/>
         </Grid>

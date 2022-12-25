@@ -12,7 +12,7 @@ namespace ProjektASM
     internal static class MyBitmap
     {
         public static Bitmap ColorBalance(this Bitmap sourceBitmap, byte blueLevel,
-                                    byte greenLevel, byte redLevel)
+                                    byte greenLevel, byte redLevel,int numberOfThreads)
         {
             BitmapData sourceData = sourceBitmap.LockBits(new Rectangle(0, 0,
                                         sourceBitmap.Width, sourceBitmap.Height),
@@ -36,9 +36,7 @@ namespace ProjektASM
             float blueLevelFloat = 255.0f - blueLevel;
             float greenLevelFloat = 255.0f - greenLevel;
             float redLevelFloat = 255.0f - redLevel;
-
-
-            for (int k = 0; k + 4 < pixelBuffer.Length; k += 4)
+            Parallel.For(0, pixelBuffer.Length, new ParallelOptions { MaxDegreeOfParallelism = numberOfThreads }, k =>
             {
                 blue = 255.0f / blueLevelFloat * (float)pixelBuffer[k];
                 green = 255.0f / greenLevelFloat * (float)pixelBuffer[k + 1];
@@ -56,8 +54,7 @@ namespace ProjektASM
                 pixelBuffer[k] = (byte)blue;
                 pixelBuffer[k + 1] = (byte)green;
                 pixelBuffer[k + 2] = (byte)red;
-            }
-
+            });
 
             Bitmap resultBitmap = new Bitmap(sourceBitmap.Width, sourceBitmap.Height);
 
