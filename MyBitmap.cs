@@ -36,11 +36,31 @@ namespace ProjektASM
             float blueLevelFloat = 255.0f - blueLevel;
             float greenLevelFloat = 255.0f - greenLevel;
             float redLevelFloat = 255.0f - redLevel;
-            Parallel.For(0, pixelBuffer.Length, new ParallelOptions { MaxDegreeOfParallelism = numberOfThreads }, k =>
+            //Parallel.For(0, pixelBuffer.Length, new ParallelOptions { MaxDegreeOfParallelism = numberOfThreads }, k =>
+            //{
+            //    blue = 255.0f / blueLevelFloat * (float)pixelBuffer[k];
+            //    green = 255.0f / greenLevelFloat * (float)pixelBuffer[k + 1];
+            //    red = 255.0f / redLevelFloat * (float)pixelBuffer[k + 2];
+
+            //    if (blue > 255) { blue = 255; }
+            //    else if (blue < 0) { blue = 0; }
+
+            //    if (green > 255) { green = 255; }
+            //    else if (green < 0) { green = 0; }
+
+            //    if (red > 255) { red = 255; }
+            //    else if (red < 0) { red = 0; }
+
+            //    pixelBuffer[k] = (byte)blue;
+            //    pixelBuffer[k + 1] = (byte)green;
+            //    pixelBuffer[k + 2] = (byte)red;
+            //});
+            Parallel.For(0, pixelBuffer.Length / 4, new ParallelOptions { MaxDegreeOfParallelism = numberOfThreads }, k =>
             {
-                blue = 255.0f / blueLevelFloat * (float)pixelBuffer[k];
-                green = 255.0f / greenLevelFloat * (float)pixelBuffer[k + 1];
-                red = 255.0f / redLevelFloat * (float)pixelBuffer[k + 2];
+                int pixelIndex = k * 4;
+                blue = 255.0f / blueLevelFloat * (float)pixelBuffer[pixelIndex];
+                green = 255.0f / greenLevelFloat * (float)pixelBuffer[pixelIndex + 1];
+                red = 255.0f / redLevelFloat * (float)pixelBuffer[pixelIndex + 2];
 
                 if (blue > 255) { blue = 255; }
                 else if (blue < 0) { blue = 0; }
@@ -51,9 +71,9 @@ namespace ProjektASM
                 if (red > 255) { red = 255; }
                 else if (red < 0) { red = 0; }
 
-                pixelBuffer[k] = (byte)blue;
-                pixelBuffer[k + 1] = (byte)green;
-                pixelBuffer[k + 2] = (byte)red;
+                pixelBuffer[pixelIndex] = (byte)blue;
+                pixelBuffer[pixelIndex + 1] = (byte)green;
+                pixelBuffer[pixelIndex + 2] = (byte)red;
             });
 
             Bitmap resultBitmap = new Bitmap(sourceBitmap.Width, sourceBitmap.Height);
