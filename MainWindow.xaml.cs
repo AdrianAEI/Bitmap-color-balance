@@ -85,10 +85,12 @@ namespace AssmblerRGB
         private void Start_Click(object sender, RoutedEventArgs e)
         {
             var watch = System.Diagnostics.Stopwatch.StartNew();
-            ImageTwo.Source = Convert(bitmap.ColorBalance(colorRGB.B, colorRGB.G, colorRGB.R, numberOfThreads));
+             //ImageTwo.Source = Convert(bitmap.ColorBalance(colorRGB.B, colorRGB.G, colorRGB.R, numberOfThreads));
+            ImageTwo.Source = Convert(bitmap.ProcessUsingLockbitsAndUnsafeAndParallel(colorRGB.B, colorRGB.G, colorRGB.R, numberOfThreads));
             watch.Stop();
             timeLabel.Content = "Time: " + watch.Elapsed.Milliseconds.ToString() + " ms";
             MessageBox.Show(numberOfThreads.ToString());
+
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
