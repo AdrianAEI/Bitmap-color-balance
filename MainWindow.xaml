@@ -43,7 +43,7 @@
                     <Slider Maximum="255" TickPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Name="slColorB" ValueChanged="ColorSlider_ValueChanged" />
                 </DockPanel>
             </StackPanel>
-            <Button x:Name="Button2" Height="100" Width="200" Background="#FFFF4A4A" Margin="175,117,25,17" Click="Start_Click" Grid.Column="1" Content="Start" FontSize="24"/>
+            <Button x:Name="Button2" IsEnabled="{Binding ElementName=Button1, Path=IsPressed}" Height="100" Width="200" Background="#FFFF4A4A" Margin="175,117,25,17" Click="Start_Click" Grid.Column="1" Content="Start" FontSize="24"/>
             <Button x:Name="Button1" Height="100" Width="200" Margin="175,13,25,121" Click="Load_Click" Grid.Column="1" Content="Load Image" Background="#FFD46A38" FontSize="24"/>
             <RadioButton Grid.Column="1" Content="C_#" HorizontalAlignment="Left" Margin="92,45,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked"/>
             <RadioButton Grid.Column="1" Content="ASM" HorizontalAlignment="Left" Margin="92,65,0,0" VerticalAlignment="Top" Checked="RadioButton_Checked_1"/>
