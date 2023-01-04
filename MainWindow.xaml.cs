@@ -87,6 +87,7 @@ namespace AssmblerRGB
             var watch = System.Diagnostics.Stopwatch.StartNew();
             ImageTwo.Source = Convert(bitmap.ColorBalance(colorRGB.B, colorRGB.G, colorRGB.R, numberOfThreads));
             //ImageTwo.Source = Convert(bitmap.ProcessUsingLockbitsAndParallel(colorRGB.B, colorRGB.G, colorRGB.R, numberOfThreads));
+            //ImageTwo.Source = Convert(bitmap.ColorBalanceBasic(colorRGB.B, colorRGB.G, colorRGB.R));
             watch.Stop();
             timeLabel.Content = "Time: " + watch.Elapsed.Milliseconds.ToString() + " ms";
             MessageBox.Show(numberOfThreads.ToString());
