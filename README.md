@@ -1,3 +1,3 @@
 # Bitmap-color-balance
-I made GUI using WPF, algorithm will be written in C# and ASM
-I try to do multithreading using parallel.for
+I made GUI using WPF, algorithm will be written in C# and MASM
+Now i try to do algorithm in MASM
